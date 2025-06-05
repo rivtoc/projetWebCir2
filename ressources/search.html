@@ -21,12 +21,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
       integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/search.js"></script>
+    
 </head>
 
 <body>
   <header id="header">
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg" style="background-color: #f5ecdb;">    
     <a class="navbar-brand" href="#">
       <img src="img/logo.png" class="img-fluid" style="max-width: 80px;">
     </a>
@@ -50,28 +50,33 @@
   </nav>
   </header>
   <main class="content">
-    <h1>Formulaire de recherche</h1>
-    <form action="#" method="GET">
-      <select class="form-select" aria-label="Default select example" id="menuOnduleur">
-        <option disabled selected hidden>Marque de l'onduleur</option>
-        <option value="1">Test</option>
-        <option value="2">test</option>
-        <option value="3">TEST</option>
-      </select>
-      <select class="form-select" aria-label="Default select example" id="menuPanneau">
-        <option disabled selected hidden>Marque du panneau solaire</option>
-        <option value="1">Test</option>
-        <option value="2">test</option>
-        <option value="3">TEST</option>
-      </select>
-      <select class="form-select" aria-label="Default select example" id="menuDepartement">
-        <option disabled selected hidden>Département</option>
-        <option value="1">Test</option>
-        <option value="2">test</option>
-        <option value="3">TEST</option>
-      </select>
-      <button type="submit">Rechercher</button>
-    </form>
+    <div class="div_rose">
+      <h4>Formulaire de recherche</h4>
+      <form action="#" method="GET">
+        <h6>Marque de l'onduleur</h6>
+        <select class="form-select" aria-label="Default select example" id="menuOnduleur">
+          <option disabled selected hidden>Marque de l'onduleur</option>
+          <option value="1">Test</option>
+          <option value="2">test</option>
+          <option value="3">TEST</option>
+        </select>
+        <h6>Marque du panneau solaire</h6>
+        <select class="form-select" aria-label="Default select example" id="menuPanneau">
+          <option disabled selected hidden>Marque du panneau solaire</option>
+          <option value="1">Test</option>
+          <option value="2">test</option>
+          <option value="3">TEST</option>
+        </select>
+        <h6>Département</h6>
+        <select class="form-select" aria-label="Default select example" id="menuDepartement">
+          <option disabled selected hidden>Département</option>
+          <option value="1">Test</option>
+          <option value="2">test</option>
+          <option value="3">TEST</option>
+        </select>
+      </form>
+    </div>
+    <div id="resultats"></div>
     <div id="search_result">
       <div class="row">
         <div class="col">Date d'installation (mois et année)</div>
@@ -108,7 +113,7 @@
 
   <section class="">
   <!-- Footer -->
-    <footer class="text-center text-white" style="background-color: #b0b3b6;" id="footer">
+    <footer class="text-center text-white" style="background-color: #e1e2e3;" id="footer">
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         Victor - Maelenn - CIR2 - 2025
@@ -117,6 +122,7 @@
     </footer>
     <!-- Footer -->
   </section>
+  <script src="js/script.js"></script>
 </body>
 
 </html>

@@ -21,12 +21,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
       integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/home.js"></script>
 </head>
 
 <body>
   <header id="header">
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-expand-lg" style="background-color: #f5ecdb;">    
+      <a class="navbar-brand" href="#">
       <img src="img/logo.png" class="img-fluid" style="max-width: 80px;">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -49,19 +50,20 @@
   </nav>
   </header>
   <main class="content">
-    <div>
+    <div class="div_rose">
         <h4>Qui sommes-nous ?</h4>
-        Bienvenue sur le site de l’entreprise Solairis, entreprise de panneaux solaires
+      Bienvenue sur le site de l’entreprise Solairis, entreprise de panneaux solaires
       depuis 1976. Sur ce site, vous retrouverez des statistiques sur nos installations,
       des informations sur nos produits (en fonction de la marque d’onduleur, la 
       marque de panneau solaire et du département) ainsi qu’un aperçu sur
       une carte de toutes les installations que nous avons réalisées.
       </div>
-      <div id="stats">
+      <div class="div_rose" id="stats">
+        <h4>Chiffres clés :</h4>
         <div id="enregistrements_base"></div>
-        <div id="installations_ans"></div>
-        <div id="installations_regions"></div>
-        <div id="installations_ans_regions"></div>
+        <div id="installations_ans">→ Nombre d’installations par années :</div>
+        <div id="installations_regions">→ Nombre d’installations par région :</div>
+        <div id="installations_ans_regions">→ Nombre d’installations par années et par régions :</div>
         <div id="installateurs"></div>
         <div id="marques_onduleurs"></div>
         <div id="marques_panneaux"></div>
@@ -70,7 +72,7 @@
 
   <section class="">
   <!-- Footer -->
-    <footer class="text-center text-white" style="background-color: #b0b3b6;" id="footer">
+    <footer class="text-center text-white" style="background-color: #e1e2e3;" id="footer">
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         Victor - Maelenn - CIR2 - 2025

@@ -9,6 +9,9 @@
     <title>Projet panneau</title>
 
     <!-- CSS Styles -->
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
      <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
       integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -16,16 +19,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
       integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
+       
 
     <!-- JS Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
       integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+      <script src="js/carte.js"></script>
 </head>
 
 <body>
   <header id="header">
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg" style="background-color: #f5ecdb;">    
     <a class="navbar-brand" href="#">
       <img src="img/logo.png" class="img-fluid" style="max-width: 80px;">
     </a>
@@ -49,30 +57,35 @@
   </nav>
   </header>
   <main class="content">
-    <h1>Map</h1>
-    <div id="map_result">
-      <a href="https://leafletjs.com/examples/quick-start/">MAP</a>
+    <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6">
+        <div id="map_result"></div>
+      <form action="map.html" method="GET">
+        <h6>Année de l'installation</h6>
+        <select class="form-select me-3" aria-label="Default select example" id="annee_installation" >
+          <option disabled selected hidden>Année de l'installation</option>
+        </select>
+        <h6>Département</h6>
+        <select class="form-select " aria-label="Default select example" id="departement">
+          <option disabled selected hidden>Département</option>
+        </select>
+        <button type="submit">Rechercher</button>
+        <div id="resultats"></div>
+      </form>
     </div>
-    <form action="#" method="GET">
-      <select class="form-select" aria-label="Default select example" id="annee_installation">
-        <option disabled selected hidden>Année de l'installation</option>
-        <option value="1">Test</option>
-        <option value="2">test</option>
-        <option value="3">TEST</option>
-      </select>
-      <select class="form-select" aria-label="Default select example" id="departement">
-        <option disabled selected hidden>Département</option>
-        <option value="1">Test</option>
-        <option value="2">test</option>
-        <option value="3">TEST</option>
-      </select>
-      <button type="submit">Rechercher</button>
-    </form>
+    <div class="col-md-6">
+        <div id="map" style="height: 400px; width: 100%;"></div>
+      </div>
+  </div>
+</div>
+    
   </main>
 
   <section class="">
   <!-- Footer -->
-    <footer class="text-center text-white" style="background-color: #b0b3b6;" id="footer">
+    <footer class="text-center text-white" style="background-color: #e1e2e3;" id="footer">
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         Victor - Maelenn - CIR2 - 2025
@@ -81,6 +94,15 @@
     </footer>
     <!-- Footer -->
   </section>
+  <script>
+    const map = L.map('map').setView([46.6, 2.4], 6);
+
+
+      const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+  </script>
 </body>
 
 </html>

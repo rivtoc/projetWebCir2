@@ -5,8 +5,22 @@
     width: 100%;
 }
 
+h4 {
+    text-align: center;
+}
+
+main {
+    padding-bottom: 70px;
+}
+
 .content {
     padding-top: 120px;
+}
+
+.div_rose {
+  margin-bottom: 20px; /* Espace sous chaque div */
+  padding: 10px;
+  background-color: #faf4e7;
 }
 
 #search_result {
@@ -17,4 +31,9 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+#map {
+  height: 400px;   /* ou la taille que tu souhaites */
+  width: 100%;     /* ou une largeur fixe */
+  border-radius: 5%;
 }
