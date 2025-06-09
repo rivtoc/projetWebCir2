@@ -1,10 +1,25 @@
 
 document.addEventListener('DOMContentLoaded', init);
 
+let map; 
+let polygonGroup;
 async function init() {
+  initialiserCarte(); // <== La carte est maintenant initialisée après le chargement du DOM
   await chargerMenus();
   ajouterEcouteursPoints();
 }
+
+function initialiserCarte() {
+  map = L.map('map').setView([46.6, 2.4], 6);
+
+  const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  polygonGroup= L.layerGroup().addTo(map);
+}
+
 
 async function chargerMenus() {
   const request = 'back/request.php?action=carte';
@@ -80,6 +95,7 @@ async function onSelectChangePoints() {
 async function chargerResultatsFiltresPoints(annee, departement) {
   const url = `back/request.php?action=filteredResultsPoint&annee=${encodeURIComponent(annee)}&departement=${encodeURIComponent(departement)}`;
                                                                                 //permet de mieux encodé dans l'URL, sinon cet URL permet de récupéré les valeurs du filtres
+  console.log("URL appelée :", url);
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error('Erreur réseau : ' + response.status);
@@ -100,8 +116,21 @@ async function chargerResultatsFiltresPoints(annee, departement) {
 
 function afficherResultatsPoints(data) {
       const container= document.getElementById('resultats')
+      polygonGroup.clearLayers();
+      if (!container) return;
 
-      container.innerHTML = data;
-      map.setLatLng([data[0].latitude, data[0].longitude]);
+  if (typeof data === 'string') {
+    container.textContent = data;
+    return;
+  }
+      var marker
+      map.setView([data[0].latitude, data[0].longitude], 8);
+      
+      for(let da of data){
+        marker = L.marker([da.latitude, da.longitude]).addTo(map);
+        marker.bindPopup('<ul><li>Localité:'+ da.nom_pays + ' - '+ da.nom_ville + '</li><li>Puissance: '+ da.puissance_crete  +' W</li><li><a href="details.html">Détails </li></ul>');
+        polygonGroup.addLayer(marker);
+        
+      }
 
 }
