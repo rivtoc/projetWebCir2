@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Title -->
+  <title>Projet panneau</title>
+
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+    integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body>
+  <header id="header">
+    <nav class="navbar navbar-expand-lg" style="background-color: #d7fcfa;">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav text-center">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="visualisation.html">Voir les installations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ajout.html">Ajouter une installation</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main class="content container my-4">
+    <h4 class="mb-4">Veuillez remplir toutes les informations concernant l'installation pour l'ajouter</h4>
+    <form action="request.php?action=ajout" method="POST">
+      <div class="row g-3">
+        <!-- Année -->
+        <div class="col-md-4 col-sm-6">
+          <label for="annee" class="form-label">Année</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
+            <input type="number" class="form-control" id="annee" name="annee" placeholder="Année" required min="1900" max="2099" />
+          </div>
+        </div>
+
+        <!-- Mois -->
+        <div class="col-md-4 col-sm-6">
+          <label for="mois" class="form-label">Mois</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+            <input type="number" class="form-control" id="mois" name="mois" placeholder="Mois" required min="1" max="12" />
+          </div>
+        </div>
+
+        <!-- Département -->
+        <div class="col-md-4 col-sm-6">
+          <label for="departement" class="form-label">Département</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-map"></i></span>
+            <input type="text" class="form-control" id="departement" name="departement" placeholder="Département" required />
+          </div>
+        </div>
+
+        <!-- Code INSEE -->
+        <div class="col-md-4 col-sm-6">
+          <label for="code_insee" class="form-label">Code INSEE</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-hashtag"></i></span>
+            <input type="text" class="form-control" id="code_insee" name="code_insee" placeholder="Code INSEE" required />
+          </div>
+        </div>
+
+        <!-- Ville -->
+        <div class="col-md-4 col-sm-6">
+          <label for="nom_ville" class="form-label">Ville</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-city"></i></span>
+            <input type="text" class="form-control" id="nom_ville" name="nom_ville" placeholder="Ville" required />
+          </div>
+        </div>
+
+        <!-- Code postal -->
+        <div class="col-md-4 col-sm-6">
+          <label for="code_postal" class="form-label">Code postal</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+            <input type="text" pattern="\d{5}" maxlength="5" inputmode="numeric" class="form-control" id="code_postal" name="code_postal" placeholder="Code postal" required />
+          </div>
+        </div>
+
+        <!-- Pays -->
+        <div class="col-md-4 col-sm-6">
+          <label for="nom_pays" class="form-label">Pays</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-flag"></i></span>
+            <input type="text" class="form-control" id="nom_pays" name="nom_pays" placeholder="Pays" required />
+          </div>
+        </div>
+
+        <!-- Région -->
+        <div class="col-md-4 col-sm-6">
+          <label for="region" class="form-label">Région</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-map-location-dot"></i></span>
+            <input type="text" class="form-control" id="region" name="region" placeholder="Région" required />
+          </div>
+        </div>
+
+        <!-- Marque onduleur -->
+        <div class="col-md-4 col-sm-6">
+          <label for="marque_onduleur" class="form-label">Marque onduleur</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-plug"></i></span>
+            <input type="text" class="form-control" id="marque_onduleur" name="marque_onduleur" placeholder="Marque onduleur" required />
+          </div>
+        </div>
+
+        <!-- Modèle onduleur -->
+        <div class="col-md-4 col-sm-6">
+          <label for="modele_onduleur" class="form-label">Modèle onduleur</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-microchip"></i></span>
+            <input type="text" class="form-control" id="modele_onduleur" name="modele_onduleur" placeholder="Modèle onduleur" required />
+          </div>
+        </div>
+
+        <!-- Marque panneau solaire -->
+        <div class="col-md-4 col-sm-6">
+          <label for="marque_panneau" class="form-label">Marque panneau solaire</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-solar-panel"></i></span>
+            <input type="text" class="form-control" id="marque_panneau" name="marque_panneau" placeholder="Marque panneau solaire" required />
+          </div>
+        </div>
+
+        <!-- Modèle panneau solaire -->
+        <div class="col-md-4 col-sm-6">
+          <label for="modele_panneau" class="form-label">Modèle panneau solaire</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-cog"></i></span>
+            <input type="text" class="form-control" id="modele_panneau" name="modele_panneau" placeholder="Modèle panneau solaire" required />
+          </div>
+        </div>
+
+        <!-- Installateur -->
+        <div class="col-md-4 col-sm-6">
+          <label for="installateur" class="form-label">Installateur</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+            <input type="text" class="form-control" id="installateur" name="installateur" placeholder="Installateur" required />
+          </div>
+        </div>
+
+        <!-- Production PVGIS -->
+        <div class="col-md-4 col-sm-6">
+          <label for="production_pvgis" class="form-label">Production PVGIS</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-bolt"></i></span>
+            <input type="text" class="form-control" id="production_pvgis" name="production_pvgis" placeholder="Production PVGIS" required />
+          </div>
+        </div>
+
+        <!-- Longitude -->
+        <div class="col-md-4 col-sm-6">
+          <label for="longitude" class="form-label">Longitude</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-location-arrow"></i></span>
+            <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitude" required />
+          </div>
+        </div>
+
+        <!-- Latitude -->
+        <div class="col-md-4 col-sm-6">
+          <label for="latitude" class="form-label">Latitude</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-location-arrow"></i></span>
+            <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitude" required />
+          </div>
+        </div>
+
+        <!-- Puissance crête -->
+        <div class="col-md-4 col-sm-6">
+          <label for="puissance_crete" class="form-label">Puissance crête</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-bolt-lightning"></i></span>
+            <input type="text" class="form-control" id="puissance_crete" name="puissance_crete" placeholder="Puissance crête"
+              required />
+          </div>
+        </div>
+
+        <!-- Surface -->
+        <div class="col-md-4 col-sm-6">
+          <label for="surface" class="form-label">Surface</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-ruler-combined"></i></span>
+            <input type="text" class="form-control" id="surface" name="surface" placeholder="Surface" required />
+          </div>
+        </div>
+
+        <!-- Orientation -->
+        <div class="col-md-4 col-sm-6">
+          <label for="orientation" class="form-label">Orientation</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-compass"></i></span>
+            <input type="text" class="form-control" id="orientation" name="orientation" placeholder="Orientation" required />
+          </div>
+        </div>
+
+        <!-- Orientation optimum -->
+        <div class="col-md-4 col-sm-6">
+          <label for="orientation_optimum" class="form-label">Orientation optimum</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-compass"></i></span>
+            <input type="text" class="form-control" id="orientation_optimum" name="orientation_optimum" placeholder="Orientation optimum"
+              required />
+          </div>
+        </div>
+
+        <!-- Pente -->
+        <div class="col-md-4 col-sm-6">
+          <label for="pente" class="form-label">Pente</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-angle-up"></i></span>
+            <input type="text" class="form-control" id="pente" name="pente" placeholder="Pente" required />
+          </div>
+        </div>
+
+        <!-- Pente optimum -->
+        <div class="col-md-4 col-sm-6">
+          <label for="pente_optimum" class="form-label">Pente optimum</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-angle-up"></i></span>
+            <input type="text" class="form-control" id="pente_optimum" name="pente_optimum" placeholder="Pente optimum" required />
+          </div>
+        </div>
+
+        <!-- Nombre onduleur(s) -->
+        <div class="col-md-4 col-sm-6">
+          <label for="nb_onduleur" class="form-label">Nombre onduleur(s)</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-microchip"></i></span>
+            <input type="number" class="form-control" id="nb_onduleur" name="nb_onduleur" placeholder="Nombre onduleur(s)" required />
+          </div>
+        </div>
+
+        <!-- Nombre panneau(x) -->
+        <div class="col-md-4 col-sm-6">
+          <label for="nb_panneau" class="form-label">Nombre panneau(x)</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-solar-panel"></i></span>
+            <input type="number" class="form-control" id="nb_panneau" name="nb_panneau" placeholder="Nombre panneau(x)" required />
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </div>
+    </form>
+  </main>
+  <section class="">
+  <!-- Footer -->
+    <footer class="text-center text-white" style="background-color: #e1e2e3;" id="footer">
+      <!-- Copyright -->
+      <div class="text-center p-3"style="background-color: rgba(0, 0, 0, 0.2);">
+        Victor - Maelenn - CIR2 - 2025
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </section>
+
+</body>
+
+</html>
