@@ -27,15 +27,15 @@
 <body>
   <header id="header">
     <nav class="navbar navbar-expand-lg" style="background-color: #f5ecdb;">    
-    <a class="navbar-brand" href="#">
-      <img src="img/logo.png" class="img-fluid" style="max-width: 80px;">
+      <a class="navbar-brand" href="#">
+      <img src="img/solairis.png" class="img-fluid" style="max-width: 80px;">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav text-center">
         <li class="nav-item active">
           <a class="nav-link" href="index.html">Accueil</a>
         </li>
@@ -56,59 +56,50 @@
         <h6>Marque de l'onduleur</h6>
         <select class="form-select" aria-label="Default select example" id="menuOnduleur">
           <option disabled selected hidden>Marque de l'onduleur</option>
-          <option value="1">Test</option>
-          <option value="2">test</option>
-          <option value="3">TEST</option>
         </select>
         <h6>Marque du panneau solaire</h6>
         <select class="form-select" aria-label="Default select example" id="menuPanneau">
           <option disabled selected hidden>Marque du panneau solaire</option>
-          <option value="1">Test</option>
-          <option value="2">test</option>
-          <option value="3">TEST</option>
         </select>
         <h6>Département</h6>
         <select class="form-select" aria-label="Default select example" id="menuDepartement">
           <option disabled selected hidden>Département</option>
-          <option value="1">Test</option>
-          <option value="2">test</option>
-          <option value="3">TEST</option>
         </select>
       </form>
     </div>
-    <div id="resultats"></div>
-    <div id="search_result">
-      <div class="row">
-        <div class="col">Date d'installation (mois et année)</div>
-        <div class="col" id="rep_date_instal">Value
-          <a href="details.html">Détails ></a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">Nombre de panneaux</div>
-        <div class="col" id="rep_nb_panneaux">Value
-          <a href="details.html">Détails ></a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">Surface</div>
-        <div class="col" id="rep_surface">Value
-          <a href="details.html">Détails ></a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">Puissance crête</div>
-        <div class="col" id="rep_puissance_crete">Value
-          <a href="details.html">Détails ></a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">Localisation</div>
-        <div class="col" id="rep_localisation">Value
-          <a href="details.html">Détails ></a>
+    <!--<div id="resultats"></div>-->
+    
+    </div>
+
+
+  <div class="container d-flex justify-content-center my-5">
+    <div class="card shadow w-75">
+      <div class="card-body">
+        <h5 class="card-title text-center mb-4">Tableau de Résultats</h5>
+        <div class="table-responsive">
+          <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date d'installation (mois et année)</th>
+          <th scope="col">Nombre de panneaux</th>
+          <th scope="col">Surface</th>
+          <th scope="col">Puissance crête</th>
+          <th scope="col">Localisation</th>
+          <th scope="col">Détails</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider " id="resultats">
+      
+      </tbody>
+      </table>
         </div>
       </div>
     </div>
+  </div>
+
+
+
   </main>
 
   <section class="">
@@ -123,6 +114,7 @@
     <!-- Footer -->
   </section>
   <script src="js/script.js"></script>
+  <script src="js/details.js"></script>
 </body>
 
 </html>
