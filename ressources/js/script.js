@@ -53,7 +53,7 @@ async function onSelectChange() {
   const departement = document.getElementById('menuDepartement').value;
 
   if (!marqueOnduleur || !marquePanneau || !departement) {
-    afficherResultats('Veuillez sélectionner toutes les options.');     //S'execute du moment qu'on a commencé à remplir le formulaire, et que l'on a pas fini
+    //afficherResultats('Veuillez sélectionner toutes les options.');     //S'execute du moment qu'on a commencé à remplir le formulaire, et que l'on a pas fini
     return;
   }
 
@@ -76,6 +76,7 @@ async function chargerResultatsFiltres(marqueOnduleur, marquePanneau, departemen
     }
 
     afficherResultats(data);    //sinon on appelle la fonction d'affichage 
+    //afficherResultatsDetails(data);
   } catch (error) {
     console.error('Erreur lors du chargement des résultats :', error);
     afficherResultats('Erreur lors du chargement des résultats.');
@@ -90,16 +91,32 @@ function afficherResultats(data) {
     container.textContent = data;
     return;
   }
+  let i=0;
+  for(let da of data){
+  container.innerHTML += '<tr><th scope="row"></th><td>'+da.mois +' / '+ da.annee+'</td><td>'+da.nb_panneau+'</td><td>'+ da.surface+' m²</td><td>'+ da.puissance_crete+' W</td><td>'+ da.nom_pays+ ' - '+ da.nom_ville+'</td><td><a href="details.html?idListe=' + da.id + '">Détails</a></td></tr>'
+  i++;
+  }
 
-  container.innerHTML = data.map(item => `
-    <div style="margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">
-      <strong>Année:</strong> ${item.annee} | <strong>Mois:</strong> ${item.mois} <br>
-      <strong>Nombre de panneaux:</strong> ${item.nb_panneau} | <strong>Surface:</strong> ${item.surface} m² <br>
-      <strong>Puissance crête:</strong> ${item.puissance_crete} W <br>
-      <strong>Pays:</strong> ${item.nom_pays} | <strong>Ville:</strong> ${item.nom_ville}
-    </div>
-  `).join('');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
