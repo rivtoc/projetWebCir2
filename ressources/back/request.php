@@ -94,6 +94,69 @@ if ($action === 'filteredResultsPoint') {
     exit;
 }
 
+// Pour afficher les 100 premières installations
+if ($action === 'donnees'){
+    $donnees = dbDonnees($db);
+
+    header('Content-Type: application/json');
+    echo json_encode([
+        'donnees' => $donnees,
+    ]);
+    exit;
+}
+
+// Pour ajouter une installation dans la base de données
+// if($requestMethod == 'POST'){ // Méthode POST
+//     dbAjout($db);
+// }
+
+if ($action == 'ajout') {
+    header('Content-Type: application/json');
+    $result = dbAjout($db);
+    if ($result) {
+        echo json_encode(['success' => 'Installation ajoutée avec succès.']);
+    } else {
+        http_response_code(500);
+        echo json_encode(['error' => 'Erreur lors de l\'ajout']);
+    }
+    exit;
+}
+
+/*if ($action === 'allResults') {
+    $stmt = $db->prepare("SELECT * FROM projetWeb");
+    $stmt->execute();
+
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    header('Content-Type: application/json');
+    echo json_encode($results);
+    exit;
+}*/
+
+if ($action === 'oneResult') {
+    $id = $_GET['id'] ?? null;
+
+    if (!$id || !is_numeric($id)) {
+        http_response_code(400);
+        echo json_encode(['error' => 'ID invalide']);
+        exit;
+    }
+
+    $stmt = $db->prepare("SELECT * FROM projetWeb WHERE id = ?");
+    $stmt->execute([$id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    } else {
+        http_response_code(404);
+        echo json_encode(['error' => 'Installation non trouvée']);
+    }
+    exit;
+}
+
+
 
 
 // Si on arrive ici, c’est que la route n’a pas été trouvée ou mauvaise méthode
