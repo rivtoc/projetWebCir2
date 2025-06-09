@@ -34,15 +34,15 @@
 <body>
   <header id="header">
     <nav class="navbar navbar-expand-lg" style="background-color: #f5ecdb;">    
-    <a class="navbar-brand" href="#">
-      <img src="img/logo.png" class="img-fluid" style="max-width: 80px;">
+      <a class="navbar-brand" href="#">
+      <img src="img/solairis.png" class="img-fluid" style="max-width: 80px;">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav text-center">
         <li class="nav-item active">
           <a class="nav-link" href="index.html">Accueil</a>
         </li>
@@ -71,7 +71,6 @@
         <select class="form-select " aria-label="Default select example" id="departement">
           <option disabled selected hidden>Département</option>
         </select>
-        <button type="submit">Rechercher</button>
         <div id="resultats"></div>
       </form>
     </div>
@@ -94,15 +93,7 @@
     </footer>
     <!-- Footer -->
   </section>
-  <script>
-    const map = L.map('map').setView([46.6, 2.4], 6);
 
-
-      const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-  </script>
 </body>
 
 </html>
