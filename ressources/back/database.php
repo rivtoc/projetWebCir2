@@ -224,10 +224,18 @@ function dbRequestAnnee($db)
 }
 
 
+
+
+
 function dbRequestFilteredResults($db, $marqueOnduleur, $marquePanneau, $departement)
 {
     try {
-        $request = 'SELECT annee, mois, nb_panneau, surface, puissance_crete, nom_pays, nom_ville   FROM projetWeb WHERE 1=1';
+        $request = 'SELECT id, annee, mois, departement, code_insee, nom_ville, code_postal, nom_pays, region, 
+            marque_onduleur, modele_onduleur, marque_panneau, modele_panneau, installateur, 
+            production_pvgis, longitude, latitude, puissance_crete, surface, orientation, 
+            orientation_optimum, pente, pente_optimum, nb_onduleur, nb_panneau 
+            FROM projetWeb WHERE 1=1';
+
         $params = [];
 
         if (!empty($marqueOnduleur)) {
@@ -253,16 +261,16 @@ function dbRequestFilteredResults($db, $marqueOnduleur, $marquePanneau, $departe
     return $result;
 }
 
-function dbRequestPoints($db, $annee = null, $departement = null) {
+function dbRequestPoints($db, $annee, $departement) {
     try {
-        $query = "SELECT latitude, longitude FROM projetWeb WHERE 1=1";
+        $query = "SELECT latitude, longitude, annee, mois, nb_panneau, surface, puissance_crete, nom_pays, nom_ville FROM projetWeb WHERE 1=1";
         $params = [];
 
-        if ($annee !== null) {
+        if (!empty($annee)) {
             $query .= " AND annee = :annee";
             $params[':annee'] = $annee;
         }
-        if ($departement !== null) {
+        if (!empty($departement)) {
             $query .= " AND departement = :departement";
             $params[':departement'] = $departement;
         }
@@ -275,4 +283,77 @@ function dbRequestPoints($db, $annee = null, $departement = null) {
         return false;
     }
     return $result;
+}
+
+// Partie back
+
+// Fonction pour obtenir les 100 premières installations
+function dbDonnees($db){
+  try
+    {
+        $request = 'SELECT id, annee, mois, departement, code_insee, nom_ville, code_postal, nom_pays, region FROM projetWeb LIMIT 100';
+        $statement = $db->prepare($request);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    catch (PDOException $exception)
+    {
+        error_log('Request error: '.$exception->getMessage());
+        return false;
+    }
+}
+
+// // Fonction pour insérer une installation dans la base de données
+function dbAjout($db){
+  try
+    {
+        $request = 'INSERT INTO projetWeb (
+                        annee, mois, departement, code_insee, nom_ville, code_postal, 
+                        nom_pays, region, marque_onduleur, modele_onduleur, marque_panneau, 
+                        modele_panneau, installateur, production_pvgis, longitude, latitude, 
+                        puissance_crete, surface, orientation, orientation_optimum, pente, 
+                        pente_optimum, nb_onduleur, nb_panneau
+                        ) VALUES (
+                             :annee, :mois, :departement, :code_insee, :nom_ville, :code_postal, 
+                             :nom_pays, :region, :marque_onduleur, :modele_onduleur, :marque_panneau, 
+                             :modele_panneau, :installateur, :production_pvgis, :longitude, :latitude, 
+                             :puissance_crete, :surface, :orientation, :orientation_optimum, :pente, 
+                             :pente_optimum, :nb_onduleur, :nb_panneau
+                         )';
+        $statement = $db->prepare($request);
+        $statement->execute([
+                 ':annee' => $_POST['annee'],
+                 ':mois' => $_POST['mois'],
+                 ':departement' => $_POST['departement'],
+                 ':code_insee' => $_POST['code_insee'],
+                 ':nom_ville' => $_POST['nom_ville'],
+                 ':code_postal' => $_POST['code_postal'],
+                 ':nom_pays' => $_POST['nom_pays'],
+                 ':region' => $_POST['region'],
+                 ':marque_onduleur' => $_POST['marque_onduleur'],
+                 ':modele_onduleur' => $_POST['modele_onduleur'],
+                 ':marque_panneau' => $_POST['marque_panneau'],
+                 ':modele_panneau' => $_POST['modele_panneau'],
+                 ':installateur' => $_POST['installateur'],
+                 ':production_pvgis' => $_POST['production_pvgis'],
+                 ':longitude' => $_POST['longitude'],
+                 ':latitude' => $_POST['latitude'],
+                 ':puissance_crete' => $_POST['puissance_crete'],
+                 ':surface' => $_POST['surface'],
+                 ':orientation' => $_POST['orientation'],
+                 ':orientation_optimum' => $_POST['orientation_optimum'],
+                 ':pente' => $_POST['pente'],
+                 ':pente_optimum' => $_POST['pente_optimum'],
+                 ':nb_onduleur' => $_POST['nb_onduleur'],
+                 ':nb_panneau' => $_POST['nb_panneau'],
+        ]);
+        echo "Installation ajoutée avec succès.";
+    }
+    catch (PDOException $exception) {
+      error_log('Request error: ' . $exception->getMessage());
+      echo "Erreur lors de l'ajout : " . $exception->getMessage();
+      return false;
+    }
+    return true;
 }
